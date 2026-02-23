@@ -1,0 +1,24 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Board List</title></head>
+<body>
+<h2>게시판</h2>
+<a th:href="@{/boards/new}">글쓰기</a>
+<table border="1" cellpadding="8">
+    <thead>
+    <tr>
+        <th>ID</th><th>제목</th><th>작성자</th><th>조회수</th><th>작성일</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="b : ${boards}">
+        <td th:text="${b.id}"></td>
+        <td><a th:href="@{|/boards/${b.id}|}" th:text="${b.title}"></a></td>
+        <td th:text="${b.writer}"></td>
+        <td th:text="${b.hits}"></td>
+        <td th:text="${b.createdAt}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

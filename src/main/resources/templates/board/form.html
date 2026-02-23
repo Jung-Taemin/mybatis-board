@@ -1,0 +1,35 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Board Form</title></head>
+<body>
+
+<a th:href="@{/boards}">목록</a>
+
+<!-- 작성/수정 분기: id가 있으면 수정 -->
+<h2 th:text="${id == null ? '글쓰기' : '글수정'}"></h2>
+
+<form th:action="${id == null ? '/boards' : '/boards/' + id}" method="post" th:object="${form}">
+    <div>
+        <label>제목</label>
+        <input type="text" th:field="*{title}"/>
+        <div th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    </div>
+
+    <!-- 작성일 때만 writer 입력 -->
+    <div th:if="${id == null}">
+        <label>작성자</label>
+        <input type="text" th:field="*{writer}"/>
+        <div th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}"></div>
+    </div>
+
+    <div>
+        <label>내용</label>
+        <textarea rows="10" cols="60" th:field="*{content}"></textarea>
+        <div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></div>
+    </div>
+
+    <button type="submit">저장</button>
+</form>
+
+</body>
+</html>

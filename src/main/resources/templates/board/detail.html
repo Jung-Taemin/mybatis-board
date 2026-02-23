@@ -1,0 +1,19 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><meta charset="UTF-8"><title>Board Detail</title></head>
+<body>
+<a th:href="@{/boards}">목록</a>
+<h2 th:text="${board.title}"></h2>
+<p>작성자: <span th:text="${board.writer}"></span></p>
+<p>조회수: <span th:text="${board.hits}"></span></p>
+<hr/>
+<pre th:text="${board.content}"></pre>
+
+<hr/>
+<a th:href="@{|/boards/${board.id}/edit|}">수정</a>
+
+<form th:action="@{|/boards/${board.id}/delete|}" method="post" style="display:inline">
+    <button type="submit">삭제</button>
+</form>
+</body>
+</html>
