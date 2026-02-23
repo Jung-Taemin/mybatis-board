@@ -1,3 +1,24 @@
+server:
+  port: 8080
+
 spring:
-  application:
-    name: mybatis-board
+  datasource:
+    url: jdbc:mysql://localhost:3306/board?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: root1234!@
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:/mapper/**/*.xml
+  type-aliases-package: com.example.board.domain
+  configuration:
+    map-underscore-to-camel-case: true
+
+jwt:
+  secret: RMVVYXVROZcHwR57AmC87qaFsK3NS2RQhn8mi0juTtl
+  access-token-exp-min: 15
+  refresh-token-exp-days: 14
+
+springdoc:
+  swagger-ui:
+    path: /swagger
