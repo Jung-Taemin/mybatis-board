@@ -67,3 +67,9 @@ th, td {
 th {
     background-color: #f2f2f2;
 }
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 6px;
+}

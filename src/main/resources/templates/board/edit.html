@@ -9,29 +9,47 @@
 <div class="container">
     <h1>게시글 수정</h1>
 
-    <form th:action="@{/boards/{id}/edit(id=${board.id})}" method="post">
+    <form th:action="@{/boards/{id}/edit(id=${boardUpdateDto.id})}"
+          th:object="${boardUpdateDto}"
+          method="post">
+
         <div class="form-group">
             <label for="title">제목</label>
-            <input type="text" id="title" name="title" th:value="${board.title}">
+            <input type="text" id="title" th:field="*{title}">
+            <p class="error-message"
+               th:if="${#fields.hasErrors('title')}"
+               th:errors="*{title}"></p>
         </div>
 
         <div class="form-group">
             <label for="writer">작성자</label>
-            <input type="text" id="writer" name="writer" th:value="${board.writer}">
+            <input type="text" id="writer" th:field="*{writer}">
+            <p class="error-message"
+               th:if="${#fields.hasErrors('writer')}"
+               th:errors="*{writer}"></p>
         </div>
 
         <div class="form-group">
             <label for="category">카테고리</label>
-            <input type="text" id="category" name="category" th:value="${board.category}">
+            <input type="text" id="category" th:field="*{category}">
+            <p class="error-message"
+               th:if="${#fields.hasErrors('category')}"
+               th:errors="*{category}"></p>
         </div>
 
         <div class="form-group">
             <label for="content">내용</label>
-            <textarea id="content" name="content" th:text="${board.content}"></textarea>
+            <textarea id="content" th:field="*{content}"></textarea>
+            <p class="error-message"
+               th:if="${#fields.hasErrors('content')}"
+               th:errors="*{content}"></p>
         </div>
 
         <div style="display: flex; gap: 10px;">
-            <button type="button" th:onclick="|location.href='/boards/${board.id}'|">취소</button>
+            <button type="button"
+                    th:onclick="|location.href='/boards/${boardUpdateDto.id}'|">
+                취소
+            </button>
             <button type="submit">수정 완료</button>
         </div>
     </form>
