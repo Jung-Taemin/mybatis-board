@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 목록</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>게시판 목록</h1>
+
+    <div style="margin-bottom: 20px;">
+        <button onclick="location.href='/boards/write'">글쓰기</button>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>카테고리</th>
+            <th>작성일</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="board : ${boardList}">
+            <td th:text="${board.id}"></td>
+            <td>
+                <a th:href="@{/boards/{id}(id=${board.id})}" th:text="${board.title}"></a>
+            </td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.category}"></td>
+            <td th:text="${board.createdAt}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

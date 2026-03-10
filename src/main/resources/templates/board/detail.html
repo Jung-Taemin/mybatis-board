@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>게시글 상세</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>게시글 상세</h1>
+
+    <div class="form-group">
+        <label>번호</label>
+        <div th:text="${board.id}"></div>
+    </div>
+
+    <div class="form-group">
+        <label>제목</label>
+        <div th:text="${board.title}"></div>
+    </div>
+
+    <div class="form-group">
+        <label>작성자</label>
+        <div th:text="${board.writer}"></div>
+    </div>
+
+    <div class="form-group">
+        <label>카테고리</label>
+        <div th:text="${board.category}"></div>
+    </div>
+
+    <div class="form-group">
+        <label>내용</label>
+        <div th:text="${board.content}"></div>
+    </div>
+
+    <div class="form-group">
+        <label>작성일</label>
+        <div th:text="${board.createdAt}"></div>
+    </div>
+
+    <div style="display: flex; gap: 10px;">
+        <button type="button" onclick="location.href='/boards'">목록으로</button>
+
+        <button type="button"
+                th:onclick="|location.href='/boards/${board.id}/edit'|">
+            수정
+        </button>
+
+        <form th:action="@{/boards/{id}/delete(id=${board.id})}" method="post">
+            <button type="submit">삭제</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
